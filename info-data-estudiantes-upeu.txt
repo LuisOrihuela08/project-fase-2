@@ -1,0 +1,101 @@
+-------------------------------------------------------------------------------------------
+Data Modelo: student dropout
+1. https://www.kaggle.com/code/jeevabharathis/student-dropout-analysis-for-school-education
+2. https://www.kaggle.com/code/subhajeetdas/student-dropout-prediction
+-------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------
+Diccionario de datos para la data adaptada:
+Variables o columnas para la Universidad Peruana Unión
+- Nombres Completos (String)
+- Género (Categoría binaria: 0 = Hombre, 1 = Mujer)
+- Modo de solicitud (Categoría: 1 = Examen de admisión ordinario, 2 = Ingreso por traslado externo, 3 = Ingreso por traslado interno, 4 = Ingreso por convenio o beca especial, 5 = Ingreso directo, 6 = Ingreso por reingreso): método o vía por la que el estudiante postuló a la universidad
+- Orden de solicitud (Numérico: 1= Primera Opción, 2 = Segunda Opción, 3 = Tercera Opción): El orden en que el estudiante presentó su solicitud. 
+- Carrera (Categoría): Representa la carrera o programa de estudios en el que fue admitido el estudiante
+- Trasladado(a) (Categoría binaria: 0 = No, 1 = Sí): Esto es porque la universidad también recibe estudiante que se trasladan o dejan sus estudios en otra universidad y se unen a la UPeU
+- Necesidades educativas especiales (Categoría binaria:0 = No, 1 = Sí): Si el estudiante tiene alguna necesidad educativa especial.
+- Procedencia (Categoría: 1 = Lima, 2 = Provincia, 3 = Extranjero): Esto es para identificar la procedencia del estudiante
+- Vivienda (Categoria: 1 = Residencia, 2 = Familiares, 3 = Alquila cuarto): Esto es para conocer si el estudiante vive en la residencia, con familia en lima, alquila cuarto, etc.
+- Crianza Adventista (Categoría binaria: 0 = No, 1 = Sí): Esto es para identificar si alumno viene de familia Adventista o no
+- Estado civil (Numérico: 1 = Soltero, 2 = Casado): El estado civil del estudiante
+- Titulación de la madre (Categoría: 1 = Sin estudios, 2 = Primaria, 3 = Secundaria, 4 = Técnica, 5 = Educacion Superior): representan el nivel educativo alcanzado de la madre.
+- Titulación del padre (Categoría: 1 = Sin estudios, 2 = Primaria, 3 = Secundaria, 4 = Técnica, 5 = Educacion Superior): representan el nivel educativo alcanzado del padre.
+- Ocupación de la madre (Categoría): Ocupación de la madre del estudiante.
+- Ocupación del padre (Categoría): Ocupación del padre del estudiante.
+- Formas de Pago (Categoria; 1 = Armadas, 2 = Contado, 3 = Otros): Esto es para conocer el método de pago de los estudiantes
+- Descuento (Categoría): Esto es para identificar tiene uno o mas de los descuentos que existe da la Universidad ya sea por venir de escuelas adventista o por tener hermanos estudiante activamente
+- Deudor (Categoría binaria: 0 = No, 1 = Sí): Si el estudiante es deudor.
+- Matrícula al día (Categoría binaria: 0 = No, 1 = Sí): Si la matrícula del estudiante está al día.
+- Becario (Categoría binaria: 0 = No, 1 = Sí): Si el estudiante es becario.
+- Edad (Numérico): Edad en el momento de la matriculación: La edad del estudiante en el momento de la matriculación.
+- Unidades curriculares 1.º semestre (matriculadas) (Numérico): Número de unidades curriculares matriculadas por el estudiante en el primer semestre.
+- Unidades curriculares 1.º semestre (evaluadas) (Numérico): Número de unidades curriculares evaluadas por el estudiante en el primer semestre
+- Unidades curriculares 1.º semestre (aprobadas) (Numérico): Número de unidades curriculares aprobadas por el estudiante en el primer semestre. 
+- Desarrollo de Tareas (Porcentaje): Esto es para medir si el estudiante cumple con sus tareas
+- Asistencia (Porcentaje): Esto es para medir las asistencias del estudiante
+- Promedio ponderado del semestre (nota numérica): Esto es para conocer la nota ponderada por semestre del estudiante
+- Situación laboral (Categoría: 0 = No Trabaja, 1= Medio Tiempo, 2 = Tiempo completo): Para conocer si el estudiante trabaja o no
+- Condición Final (Categoria: 1 = Graduado, 2 = Desertó): Para conocer el desempeño o  deserción del estudiante
+
+Estos datos es para la variable Carrera:
+| Código | Carrera                                                       |
+| ------ | ------------------------------------------------------------- |
+| 1      | Administración                                                |
+| 2      | Contabilidad, Gestión Tributaria y Aduanera                   |
+| 3      | Marketing y Negocios Internacionales                          |
+| 4      | Comunicación Audiovisual y Medios Interactivos                |
+| 5      | Comunicación Organizacional                                   |
+| 6      | Comunicación y Periodismo                                     |
+| 7      | Comunicación y Publicidad                                     |
+| 8      | Derecho                                                       |
+| 9      | Educación – Ciencias Naturales y Tecnología                   |
+| 10     | Educación – Educación Física, Recreación y Deportes           |
+| 11     | Educación – Inglés y Español                                  |
+| 12     | Educación – Inicial y Puericultura                            |
+| 13     | Educación – Matemática, Análisis de Datos y Computación       |
+| 14     | Educación – Música y Artes Visuales                           |
+| 15     | Educación – Primaria y Pedagogía Terapéutica                  |
+| 16     | Arquitectura y Urbanismo                                      |
+| 17     | Ingeniería Ambiental                                          |
+| 18     | Ingeniería Civil                                              |
+| 19     | Ingeniería de Ciberseguridad                                  |
+| 20     | Ingeniería de Industrias Alimentarias                         |
+| 21     | Ingeniería de Sistemas                                        |
+| 22     | Ingeniería de Software                                        |
+| 23     | Ingeniería en Ciencia de Datos                                |
+| 24     | Ingeniería Industrial                                         |
+| 25     | Enfermería                                                    |
+| 26     | Nutrición Humana                                              |
+| 27     | Psicología                                                    |
+| 28     | Medicina Humana                                               |
+| 29     | Tecnología Médica – Laboratorio Clínico y Anatomía Patológica |
+| 30     | Tecnología Médica – Terapia Física y Rehabilitación           |
+| 31     | Teología                                                      |
+
+
+Estos datos son para las variables de Ocupación de la madre y Ocupación del padre:
+| Código | Categoría ocupacional simplificada       | Ejemplos incluidos                                                                            |
+| ------ | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| 1      | Profesionales y técnicos                 | Ingenieros, médicos, docentes universitarios, contadores, enfermeras, técnicos especializados |
+| 2      | Empleados administrativos / de oficina   | Secretarias, asistentes, oficinistas, administrativos, recepcionistas                         |
+| 3      | Comerciantes / vendedores                | Dueños de negocios, bodegueros, vendedores ambulantes, comerciantes minoristas                |
+| 4      | Obreros / trabajadores manuales          | Albañiles, carpinteros, mecánicos, choferes, electricistas                                    |
+| 5      | Agricultores / ganaderos / pescadores    | Trabajadores rurales, campesinos, ganaderos, agricultores                                     |
+| 6      | Militares / policías / fuerzas del orden | Policía, ejército, marina, serenazgo                                                          |
+| 7      | Servicios personales y domésticos        | Cocineros, meseros, vigilantes, empleadas del hogar, conductores particulares                 |
+| 8      | Ama de casa / labores del hogar          | Madres o padres que no ejercen actividad laboral remunerada                                   |
+| 9      | Desempleado / sin ocupación              | Personas que buscan trabajo, jubilados sin actividad económica                                |
+| 10     | Otros / no especificado                  | Cualquier ocupación no clasificada en las anteriores                                          |
+
+Estos datos son para la variable Descuento:
+| Código | Categoría de descuento                                            |
+| ------ | ----------------------------------------------------------------- |
+| 0      | No tiene descuento                                                |
+| 1      | Descuento por procedencia de colegio adventista                   |
+| 2      | Descuento por hermanos estudiando en la UPeU                      |
+| 3      | Descuento por convenio institucional / iglesia                    |
+| 4      | Descuento académico (alto rendimiento, primeros puestos, etc.)    |
+| 5      | Otro tipo de descuento (especial, extraordinario, no clasificado) |
+
+-------------------------------------------------------------------------------------------
